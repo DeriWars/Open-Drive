@@ -4,15 +4,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='web/css/nav.css') }}">
-    <title>Open Drive - {{folder}}</title>
+    <script src="{{ url_for('static', filename='web/js/cancel.js') }}"></script>
+    <title>Pécloud - {{folder}}</title>
 </head>
 <body>
     <div class="left">
-        <h1>Open Drive</h1>
+        <h1>Pécloud</h1>
         <ul>
+            <h2>Main folders</h2>
             <li><a href="/">Home</a></li>
             <li><a href="/shared">Shared</a></li>
-            <li><a href="/login">Log out</a></li>
+            <h2>Actions</h2>
+            <li><input type="button" value="New folder" class="" id="new-folder"></li>
+            <li><input type="button" value="Upload" class="" id="upload-button"></li>
+
+            <li id="bottom"><a href="/login">Log out</a></li>
         </ul>
     </div>
 
@@ -27,12 +33,40 @@
 
             {% for file in files %}
                 <div class="file">
-                    <img src="{{ url_for('static', filename='web/image/file.png') }}" alt="">
+                    {% if ".png" in file or ".jpg" in file or ".jpeg" in file or ".svg" in file %}
+                        <img src="/static/drive/{{folder}}/{{file}}" alt="">
+                    {% elif ".mp4" in file or ".mov" in file or ".mva" in file %}
+                        <img src="{{ url_for('static', filename='web/image/video.png') }}" alt="">
+                    {% elif ".mp3" in file or ".wav" in file %}
+                        <img src="{{ url_for('static', filename='web/image/sound.png') }}" alt="">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='web/image/file.png') }}" alt="">
+                    {% endif %}
+
                     <a class="link" href="/static/drive/{{folder}}/{{file}}">{{file}}</a>
                     <a href="/static/drive/{{folder}}/{{file}}" class="download" download>Download</a>
                 </div>
             {% endfor %}
         </div>
+    </div>
+
+    <div class="upload-form hide" id="upload-form">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <h1>Upload</h1>
+            <input type="file" name="file" id="file" multiple required>
+            <input type="submit" value="Upload">
+            <input type="button" value="Cancel" class="cancel" id="cancel-upload">
+        </form>
+    </div>
+
+    <div class="upload-form hide" id="newfolder-form">
+        <form action="/new" method="POST">
+            <h1>Create folder</h1>
+            <label for="foldername">Folder name</label>
+            <input type="text" name="folder_name" id="folder_name" required>
+            <input type="submit" value="Create">
+            <input type="button" value="Cancel" class="cancel" id="cancel-folder">
+        </form>
     </div>
 </body>
 </html>

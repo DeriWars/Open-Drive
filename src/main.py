@@ -7,8 +7,10 @@ from os import path, makedirs
 from objects.sql import UserDatabase
 from objects.directory_content import get_directory_content
 
-app = Flask("Open Drive")
+app = Flask("Pécloud")
 app.secret_key = "opendrive-zef15cezf1ce54fg1zc125dsq165fez1"
+
+app.config['UPLOAD_FOLDER'] = "./static/upload"
 
 USER_DB = UserDatabase("./static/web/data/users.db")
 DRIVE_PATH = "./static/drive/"
@@ -90,6 +92,33 @@ def signup() -> str:
         makedirs(DRIVE_PATH + username)
         
         return redirect("/")
+
+@app.route("/upload", methods=["POST"])
+def upload() -> str:
+    if not 'username' in session:
+        return redirect("/login")
+    
+    if request.method == "POST":
+        if 'file' in request.files:
+            for file in request.files.getlist('file'):
+                file.save(f"./static/drive/{session['username']}/{file.filename}")
+                
+            return redirect(f"/{session['username']}")
+            
+    
+    return redirect(f"/{session['username']}")
+
+@app.route("/new", methods=["POST"])
+def new_folder():
+    if not 'username' in session:
+        return redirect("/login")
+    
+    if request.method == "POST":
+        folder_name = request.form['folder_name']
+        makedirs(f"./static/drive/{session['username']}/{folder_name}")
+    
+    return redirect(f"/{session['username']}")
+
 
 def main():
     app.run(host=gethostbyname(gethostname()), port=8080, debug=True) # Debug server

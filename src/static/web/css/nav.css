@@ -3,6 +3,7 @@ body {
     padding: 0;
     background: #f1f1f1;
     font-size: 120%;
+    overflow: hidden;
 }
 
 .left {
@@ -29,6 +30,7 @@ body {
 .left li{
     padding: 5px;
     margin-left: 5px;
+    border-radius: 5px;
 }
 
 .left li:hover{
@@ -41,6 +43,28 @@ body {
     color: #000;
     width: 100%;
     padding: 10px;
+}
+
+.left h2{
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: 1vh;
+}
+
+.left li#bottom{
+    position: absolute;
+    bottom: 2vh;
+}
+
+li input[type="button"] {
+    background: #fff;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 100%;
+    padding: 0 0 0 10px;
+    margin: 0;
 }
 
 .right {
@@ -77,11 +101,23 @@ div.content {
 }
 
 div.folder, div.file{
+    display: flex;
     position: relative;
-    margin: 0;
-    padding: 10px;
+    margin: 10px;
+    padding: 0;
     width: 98%;
     height: 5vh;
+    transition: all .2s ease-in-out;
+    border-radius: 5px;
+}
+
+div.folder:hover, div.file:hover{
+    background-color: #ececec;
+    transition: all .2s ease-in-out;
+}
+
+div.file:hover a.download {
+    background-color: #ececec;
 }
 
 div.content a.link{
@@ -93,6 +129,10 @@ div.content a.link{
     color: #000;
     padding-left: 15px;
     line-height: 5vh;
+}
+
+div.content a.link:hover {
+    text-decoration: underline;
 }
 
 div.content img{
@@ -132,4 +172,90 @@ a.download:hover {
     color: #fefefe;
     background-color: rgb(58, 58, 58);
     transition: all .2s ease-in-out;
+}
+
+div.file a.download:hover {
+    background-color: rgb(58, 58, 58);
+}
+
+
+
+.hide{
+    visibility: hidden;
+}
+
+.upload-form{
+    display: flex;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-form form{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    width: 25vw;
+    height: 30vh;
+    background: #fff;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+form h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+form label {
+    margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding-left: 5px;
+    font-size: 16px;
+    color: #353535;
+    border-radius: 5px;
+    transition: .2s;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000;
+    background: #353535;
+    color: #fefefe;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: .2s;
+}
+
+form input[type="submit"]:hover {
+    background: #000;
+    transition: .2s;
+}
+
+.cancel{
+    width: 100%;
+    padding: 10px;
+    color: red;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: .2s;
+    background: #fff;
+    border: 1px solid red;
 }

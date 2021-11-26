@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='web/css/form.css') }}">
-    <title>Open Drive - Log in</title>
+    <title>Pécloud - Log in</title>
 </head>
 <body>
     <div class="login">
@@ -16,9 +16,9 @@
             {% endif %}
             
             <label for="username">Username / Email</label>
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" required>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" required>
             <p>You don't have an account yet? <a href="/signup">Sign up</a></p>
             <input type="submit" value="Log in">
         </form>

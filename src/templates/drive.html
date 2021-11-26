@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='web/css/nav.css') }}">
+    <title>Open Drive - {{folder}}</title>
+</head>
+<body>
+    <div class="left">
+        <h1>Open Drive</h1>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/shared">Shared</a></li>
+            <li><a href="/login">Log out</a></li>
+        </ul>
+    </div>
+
+    <div class="right">
+        <div class="content">
+            {% for subfolder in folders %}
+                <div class="folder">
+                    <img src="{{ url_for('static', filename='web/image/folder.png') }}" alt="">
+                    <a class="link" href="/{{folder}}/{{subfolder}}">{{subfolder}}</a>
+                </div>
+            {% endfor %}
+
+            {% for file in files %}
+                <div class="file">
+                    <img src="{{ url_for('static', filename='web/image/file.png') }}" alt="">
+                    <a class="link" href="/static/drive/{{folder}}/{{file}}">{{file}}</a>
+                    <a href="/static/drive/{{folder}}/{{file}}" class="download" download>Download</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

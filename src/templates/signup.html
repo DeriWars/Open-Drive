@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='web/css/form.css') }}">
+    <title>Open Drive - Sign up</title>
+</head>
+<body>
+    <div class="login">
+        <form action="/signup" method="POST">
+            <h1>Create account</h1>
+
+            {% if error %}
+                <p class="error">{{error}}</p>
+            {% endif %}
+
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <label for="confirm_password">Confirm password</label>
+            <input type="password" name="confirm_password" id="confirm_password">
+            <p>You already have an account? <a href="/login">Log in</a></p>
+            <input type="submit" value="Sign up">
+        </form>
+    </div>
+</body>
+</html>

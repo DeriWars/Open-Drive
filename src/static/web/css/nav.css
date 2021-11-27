@@ -144,6 +144,8 @@ div.content img{
     height: 5vh;
     margin: 0;
     padding: 0;
+    border-radius: 5px;
+    object-fit: cover;
 }
 
 p.error {
@@ -154,28 +156,57 @@ p.error {
 }
 
 a.download{
-    display: flex;
-    position: absolute;
-    right: 1vw;
-    top: 0;
-    text-decoration: none;
-    padding-left: 15px;
-    padding-right: 15px;
-    line-height: 5vh;
     color: #000;
     background-color: #fff;
-    border-radius: 5px;
+    right: 7.5vh;
     transition: all .2s ease-in-out;
 }
 
 a.download:hover {
     color: #fefefe;
-    background-color: rgb(58, 58, 58);
+    background-color: rgb(163, 255, 134);
+    transition: all .2s ease-in-out;
+}
+
+a.img{
+    display: flex;
+    position: absolute;
+    top: 0;
+    text-decoration: none;
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 5vh;
+    height: 5vh;
+    width: 5vh;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+a.delete {
+    color: #000;
+    background-color: rgb(255, 208, 208);
+    right: 1vw;
+    transition: all .2s ease-in-out;
+}
+
+a.img img{
+    height: 3.5vh;
+    width: 3.5vh;
+    position: relative;
+    top: 0.75vh;
+    left: 0.75vh;
+    margin: 0;
+    z-index: 0;
+}
+
+a.delete:hover {
+    color: #fefefe;
+    background-color: rgb(255, 97, 97);
     transition: all .2s ease-in-out;
 }
 
 div.file a.download:hover {
-    background-color: rgb(58, 58, 58);
+    background-color: rgb(163, 255, 134);
 }
 
 
@@ -193,6 +224,7 @@ div.file a.download:hover {
     border-radius: 10px;
     justify-content: center;
     align-items: center;
+    z-index: 9;
 }
 
 .upload-form form{
